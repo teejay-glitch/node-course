@@ -12,6 +12,12 @@ const customerSchema = new mongoose.Schema({
     required: true,
   },
   industry: String,
+  orders: [
+    {
+      description: String,
+      amountInCents: Number,
+    },
+  ],
 });
 
 const Customer = mongoose.model('Customer', customerSchema);

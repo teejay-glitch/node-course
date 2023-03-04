@@ -4,12 +4,13 @@ import { Types } from 'mongoose';
 
 export namespace CustomerEp {
   export async function createCustomer(req: Request, res: Response) {
-    const { name, industry } = req.body;
+    const { name, industry, orders } = req.body;
 
     try {
       const customer = new Customer({
         name: name,
         industry: industry,
+        orders: orders,
       });
 
       await customer.save();
