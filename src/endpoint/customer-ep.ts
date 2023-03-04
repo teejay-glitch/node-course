@@ -93,7 +93,17 @@ export namespace CustomerEp {
         { new: true }
       );
 
-      console.log('customer: ', customer);
+      return res.send({ customer });
+    } catch (error: any) {
+      return res.send({ error: error.message });
+    }
+  }
+
+  export async function getCustomerOrderById(req: Request, res: Response) {
+    const orderId = req.params.id;
+    try {
+      //--ALWAYS USE "" WHEN WORKING WITH NESTED ATTRIBUTES
+      const customer = await Customer.findOne({ 'orders._id': new Types.ObjectId(orderId) });
 
       return res.send({ customer });
     } catch (error: any) {

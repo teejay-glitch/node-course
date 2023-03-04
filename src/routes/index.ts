@@ -48,6 +48,8 @@ export function initRoutes(app: Express) {
 
   app.patch('/api/orders/:id', CustomerEp.updateCustomerOrder);
 
+  app.get('/api/orders/:id', CustomerEp.getCustomerOrderById);
+
   app.delete('/api/customers/:id', CustomerEp.deleteCustomer);
 
   app.get('/', (req: Request, res: Response) => {
