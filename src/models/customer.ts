@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import ICustomer from '../interfaces/customer-interface';
 
 //--THIS CAN BE USED AS WELL
 // const customerSchema = new mongoose.Schema({
@@ -20,6 +21,6 @@ const customerSchema = new mongoose.Schema({
   ],
 });
 
-const Customer = mongoose.model('Customer', customerSchema);
+const Customer = mongoose.model<ICustomer>('Customer', customerSchema);
 
 export default Customer;
