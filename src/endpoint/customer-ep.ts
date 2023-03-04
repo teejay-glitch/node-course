@@ -71,4 +71,33 @@ export namespace CustomerEp {
       return res.send({ error: error.message });
     }
   }
+
+  export async function updatePartialCustomer(req: Request, res: Response) {
+    const customerId = req.params.id;
+    try {
+      const customer = await Customer.findOneAndUpdate({ _id: new Types.ObjectId(customerId) }, req.body, { new: true });
+
+      return res.send({ customer });
+    } catch (error: any) {
+      return res.send({ error: error.message });
+    }
+  }
+
+  export async function updateCustomerOrder(req: Request, res: Response) {
+    const orderId = req.params.id;
+    try {
+      //--ALWAYS USE "" WHEN WORKING WITH NESTED ATTRIBUTES
+      const customer = await Customer.findOneAndUpdate(
+        { 'orders._id': new Types.ObjectId(orderId) },
+        { $set: { 'orders.$': req.body } },
+        { new: true }
+      );
+
+      console.log('customer: ', customer);
+
+      return res.send({ customer });
+    } catch (error: any) {
+      return res.send({ error: error.message });
+    }
+  }
 }

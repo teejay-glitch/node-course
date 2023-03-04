@@ -42,7 +42,11 @@ export function initRoutes(app: Express) {
   //--USING ID AND QUERY PARAMETERS
   app.get('/api/customers/:id?', CustomerEp.getCustomerById);
 
-  app.post('/api/customers/:id', CustomerEp.updateCustomer);
+  app.put('/api/customers/:id', CustomerEp.updateCustomer);
+
+  app.patch('/api/customers/:id', CustomerEp.updatePartialCustomer);
+
+  app.patch('/api/orders/:id', CustomerEp.updateCustomerOrder);
 
   app.delete('/api/customers/:id', CustomerEp.deleteCustomer);
 
